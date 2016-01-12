@@ -18,7 +18,7 @@ class Renderer(val fov: Float)
 {
     var viewport = Vector2(640f, 480f);
 
-    lateinit var cam: PerspectiveCamera
+    public lateinit var cam: PerspectiveCamera
     lateinit var modelBatch: ModelBatch
     lateinit var environment: Environment
     lateinit var camController: CameraInputController

@@ -1,11 +1,13 @@
 package tech.derek.rpgsix.entites
 
+import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.VertexAttributes
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.g3d.Material
 import com.badlogic.gdx.graphics.g3d.Model
 import com.badlogic.gdx.graphics.g3d.ModelInstance
+import com.badlogic.gdx.graphics.g3d.attributes.BlendingAttribute
 import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder
 import com.badlogic.gdx.math.Vector3
@@ -18,8 +20,12 @@ val modelBuilder = ModelBuilder();
 public fun createBlockModel(textureRegion: TextureRegion): Model
 {
     textureRegion.flip(true, false);
+
+    val material = Material(TextureAttribute.createDiffuse(textureRegion))
+    material.set(BlendingAttribute(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA, 1f));
+
     return modelBuilder.createBox(1f, 1f, 1f,
-            Material(TextureAttribute.createDiffuse(textureRegion)),
+            material,
             (VertexAttributes.Usage.Position
                     or VertexAttributes.Usage.Normal
                     or VertexAttributes.Usage.TextureCoordinates)

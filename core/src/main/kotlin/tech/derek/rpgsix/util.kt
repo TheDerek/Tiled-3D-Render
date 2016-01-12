@@ -10,9 +10,10 @@ import com.badlogic.gdx.utils.Array
 import com.badlogic.gdx.utils.ObjectMap
 import tech.derek.rpgsix.entites.Block
 import tech.derek.rpgsix.entites.createBlockModel
+import java.awt.Point
 
 
-public fun loadMap(filePath: String, visibleModels: Array<VisibleModel>)
+public fun loadMap(filePath: String, visibleModels: Array<VisibleModel>): Point
 {
     val map = TmxMapLoader().load(filePath);
 
@@ -22,7 +23,7 @@ public fun loadMap(filePath: String, visibleModels: Array<VisibleModel>)
         for(tile in tileset)
             tileMap.put(tile, createBlockModel(tile.textureRegion))
 
-
+    var size = Point(0, 0)
     // Place the tiles into the array
     for(z in 0..map.layers.count - 1)
     {
@@ -38,7 +39,10 @@ public fun loadMap(filePath: String, visibleModels: Array<VisibleModel>)
         }
 
         operate(tLayer, fun(x, y) = addTile(x, y))
+        size = Point(layer.width, layer.height)
     }
+
+    return size
 }
 
 fun operate(layer: TiledMapTileLayer, operation: (x: Int, y: Int) -> Unit)

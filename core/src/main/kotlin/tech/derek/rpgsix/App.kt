@@ -17,8 +17,15 @@ class App : ApplicationAdapter()
     override fun create()
     {
         renderer = Renderer(70f);
-        loadMap("tiled.tmx", visibleEntities)
+        val mapSize = loadMap("tiled.tmx", visibleEntities)
 
+        // Yes I know this is terrible, it's late at night and I'm tired.
+        renderer.cam.translate(renderer.cam.position.cpy().scl(-1f))
+        renderer.cam.translate(Vector3(mapSize.x.toFloat() / 2f, 18f, mapSize.y.toFloat()));
+        renderer.cam.lookAt(Vector3(mapSize.x.toFloat() / 2f, 0f, mapSize.y.toFloat() / 2f))
+        renderer.cam.rotate(Vector3.Y, 180f)
+        renderer.cam.translate(Vector3(0f, 0f, -mapSize.y.toFloat()))
+        renderer.cam.update();
     }
 
     override fun render()
