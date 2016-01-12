@@ -30,7 +30,7 @@ class Renderer(val fov: Float)
         environment.add(DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f));
 
         cam = PerspectiveCamera(fov, viewport.x, viewport.y)
-        cam.position.set(4f, 10f, 4f);
+        cam.position.set(0f, 10f, 4f);
         cam.lookAt(0f, 0f, 0f);
         cam.near = 0.1f;
         cam.far = 300f;

@@ -14,14 +14,11 @@ class App : ApplicationAdapter()
     val visibleEntities = Array<VisibleModel>()
     lateinit var renderer: Renderer
 
-    lateinit var wall: Block
-
     override fun create()
     {
         renderer = Renderer(70f);
+        loadMap("tiled.tmx", visibleEntities)
 
-        wall = Block(Vector3(0f, 0f, 0f))
-        visibleEntities.add(wall)
     }
 
     override fun render()

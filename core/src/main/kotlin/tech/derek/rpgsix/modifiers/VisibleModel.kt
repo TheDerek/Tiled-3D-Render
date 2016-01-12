@@ -16,7 +16,9 @@ interface VisibleModel
 
     fun render(modelBatch: ModelBatch, environment: Environment)
     {
-        instance.transform.setToRotation(Vector3.Y, rotation).trn(position)
+        instance.transform.setToRotation(Vector3.Z, 90f)
+                .rotate(Vector3.Y, 0f)
+                .trn(position)
         modelBatch.render(instance, environment)
     }
 }
